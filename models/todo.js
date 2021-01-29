@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const sequelize = require('../utils/sequelize')
+const sequelize = require('../utils/database')
 
 const todo = sequelize.define('Todo', {
     id: {
@@ -14,10 +14,6 @@ const todo = sequelize.define('Todo', {
     },
     title: {
         type: Sequelize.STRING,
-        allowNull: false
-    },
-    date: {
-        type: Sequelize.DATE,
         allowNull: false
     }
 })

@@ -60,8 +60,19 @@ new Vue({
           .catch(err => console.log(err))
       },
       removeTodo(id) {
-        fetch('/api/todo/' + id, {
-          method: 'DELETE',
+        const query = `
+          mutation {
+            deleteTodo(id: "${id}")
+          }
+        `
+
+        fetch('/graphql', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({query})
         })
           .then(() => {
             this.todos = this.todos.filter(t => t.id !== id)
